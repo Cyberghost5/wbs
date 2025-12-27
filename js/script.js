@@ -90,24 +90,30 @@ function initRegistrationForm() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(data)
             });
             
-            const result = await response.json();
+            let result;
+            try {
+                result = await response.json();
+            } catch (e) {
+                throw new Error('Invalid server response. Please try again.');
+            }
             
-            if (result.success) {
+            if (response.ok && result.success) {
                 showNotification(result.message, 'success');
                 closeRegistrationForm();
             } else {
                 const errorMsg = result.errors ? 
                     `${result.message}<br><small>${result.errors.join('<br>')}</small>` : 
-                    result.message;
+                    result.message || 'Registration failed. Please try again.';
                 showNotification(errorMsg, 'error');
             }
         } catch (error) {
             console.error('Error:', error);
-            showNotification('Error submitting registration. Please check your connection and try again.', 'error');
+            showNotification(error.message || 'Error submitting registration. Please check your connection and try again.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
@@ -243,21 +249,27 @@ function initContactForm() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(data)
             });
             
-            const result = await response.json();
+            let result;
+            try {
+                result = await response.json();
+            } catch (e) {
+                throw new Error('Invalid server response. Please try again.');
+            }
             
-            if (result.success) {
+            if (response.ok && result.success) {
                 showNotification(result.message, 'success');
                 contactForm.reset();
             } else {
-                showNotification(result.message, 'error');
+                showNotification(result.message || 'Failed to send message. Please try again.', 'error');
             }
         } catch (error) {
             console.error('Error:', error);
-            showNotification('Error sending message. Please try again later.', 'error');
+            showNotification(error.message || 'Error sending message. Please try again later.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
