@@ -225,12 +225,12 @@ function getConfirmationEmailTemplate($firstName, $lastName, $delegateType, $del
         <div class='container'>
             <div class='header'>
                 <h1>WBS 2026</h1>
-                <p>World Branding and Signage Summit</p>
+                <p>Global Branding and Signage Summit</p>
             </div>
             <div class='content'>
                 <h2>Registration Confirmed!</h2>
                 <p>Dear $firstName $lastName,</p>
-                <p>Thank you for registering for the World Branding and Signage Summit 2026!</p>
+                <p>Thank you for registering for the Global Branding and Signage Summit 2026!</p>
                 
                 <div class='info-box'>
                     <strong>Registration Details:</strong><br>
@@ -259,7 +259,7 @@ function getConfirmationEmailTemplate($firstName, $lastName, $delegateType, $del
             </div>
             <div class='footer'>
                 <p>&copy; 2026 Worklink Consulting. All rights reserved.</p>
-                <p>World Branding and Signage Summit | April 24, 2026 | Nigeria, Africa</p>
+                <p>Global Branding and Signage Summit | April 24, 2026 | Nigeria, Africa</p>
             </div>
         </div>
     </body>

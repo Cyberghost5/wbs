@@ -1,10 +1,10 @@
-# World Branding and Signage Summit 2026
+# Global Branding and Signage Summit 2026
 
-Official website for the World Branding and Signage Summit taking place on **April 24, 2026**.
+Official website for the Global Branding and Signage Summit taking place on **April 24, 2026**.
 
 ## 🌐 About the Summit
 
-The World Branding and Signage Summit 2026 is a premier event bringing together industry leaders, creative professionals, and innovators from around the globe to explore the latest trends, technologies, and strategies in brand identity and visual communication.
+The Global Branding and Signage Summit 2026 is a premier event bringing together industry leaders, creative professionals, and innovators from around the globe to explore the latest trends, technologies, and strategies in brand identity and visual communication.
 
 ## 🎯 Key Features
 
@@ -137,7 +137,7 @@ For questions about the summit:
 
 ## 📄 License
 
-© 2026 World Branding and Signage Summit. All rights reserved.
+© 2026 Global Branding and Signage Summit. All rights reserved.
 
 ---
 

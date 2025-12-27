@@ -19,7 +19,7 @@ define('REPLY_TO_EMAIL', 'info@wbssummit.com.ng');
 define('ADMIN_EMAIL', 'info@wbssummit.com.ng');
 
 // Application Settings
-define('SITE_NAME', 'World Branding and Signage Summit 2026');
+define('SITE_NAME', 'Global Branding and Signage Summit 2026');
 define('SITE_URL', 'http://localhost/wbs');
 
 return [

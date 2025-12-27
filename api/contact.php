@@ -233,7 +233,7 @@ function getContactConfirmationTemplate($name, $subject) {
         <div class='container'>
             <div class='header'>
                 <h1>WBS 2026</h1>
-                <p>World Branding and Signage Summit</p>
+                <p>Global Branding and Signage Summit</p>
             </div>
             <div class='content'>
                 <h2>Message Received!</h2>
