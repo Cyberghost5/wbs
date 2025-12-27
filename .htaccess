@@ -1,7 +1,11 @@
 # Enable URL Rewriting
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    # RewriteBase /wbs/
+    # RewriteBase /
+
+    # Exclude API folder from rewriting (API calls need .php extension)
+    RewriteCond %{REQUEST_URI} ^/api/ [NC]
+    RewriteRule ^ - [L]
 
     # Remove .php extension
     # If the request is not for a directory
@@ -17,8 +21,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Remove .php extension from URL if present
+    # Remove .php extension from URL if present (but not in API folder)
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+    RewriteCond %{REQUEST_URI} !^/api/ [NC]
     RewriteRule ^ %1 [R=301,L]
 </IfModule>
 
@@ -26,7 +31,7 @@
 Options -Indexes
 
 # Custom error pages (optional)
-# ErrorDocument 404 /wbs/404.php
+# ErrorDocument 404 /404.php
 
 # Security Headers
 <IfModule mod_headers.c>
