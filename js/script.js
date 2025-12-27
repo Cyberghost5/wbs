@@ -35,37 +35,42 @@ function closeRegistrationForm() {
 function initRegistrationForm() {
     const registrationForm = document.getElementById('registrationForm');
     
-    registrationForm.addEventListener('submit', (e) => {
+    registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = new FormData(registrationForm);
         const data = Object.fromEntries(formData.entries());
-        const delegateType = data.delegateType;
-        const fee = delegateType === 'local' ? '₦40,000 ($30)' : '$300 USD';
         
-        // In production, send this to your server
-        alert(`Thank you for registering, ${data.firstName} ${data.lastName}!\n\nRegistration Type: ${delegateType === 'local' ? 'Local Delegate' : 'Foreign Delegate'}\nFee: ${fee}\n\nYou will receive payment instructions and confirmation via email at ${data.email} shortly.`);
+        // Disable submit button
+        const submitBtn = registrationForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
         
-        closeRegistrationForm();
-        
-        // In production:
-        /*
-        fetch('registration-handler.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            alert('Registration successful! Check your email for payment instructions.');
-            closeRegistrationForm();
-        })
-        .catch(error => {
-            alert('Error submitting registration. Please try again.');
-        });
-        */
+        try {
+            const response = await fetch('api/register.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert(`Registration successful!\n\n${result.message}`);
+                closeRegistrationForm();
+            } else {
+                alert(`Registration failed:\n${result.message}\n\n${result.errors ? result.errors.join('\n') : ''}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error submitting registration. Please check your connection and try again.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
     });
     
     // Close modal when clicking outside
@@ -179,38 +184,43 @@ function initNavbarScroll() {
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData.entries());
         
-        // For demo purposes, just show an alert
-        // In production, you would send this to a server
-        alert(`Thank you for your message, ${data.name}! We'll get back to you soon.`);
+        // Disable submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
         
-        // Reset form
-        contactForm.reset();
-        
-        // In production, you would do something like:
-        /*
-        fetch('your-api-endpoint.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Message sent successfully!');
-            contactForm.reset();
-        })
-        .catch(error => {
-            alert('Error sending message. Please try again.');
-        });
-        */
+        try {
+            const response = await fetch('api/contact.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert(result.message);
+                contactForm.reset();
+            } else {
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error sending message. Please try again later.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
     });
 }
 

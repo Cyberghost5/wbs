@@ -1,0 +1,13 @@
+{
+    "name": "wbs/summit",
+    "description": "World Branding and Signage Summit 2026",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "authors": [
+        {
+            "name": "Worklink Consulting"
+        }
+    ]
+}
