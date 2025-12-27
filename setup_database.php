@@ -12,15 +12,15 @@ if ($mysqli->connect_error) {
 }
 
 // Create database
-$sql = "CREATE DATABASE IF NOT EXISTS wbs_summit CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+$sql = "CREATE DATABASE IF NOT EXISTS yexnecom_wbssummit CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
 if ($mysqli->query($sql)) {
-    echo "✓ Database 'wbs_summit' created successfully<br>";
+    echo "✓ Database 'yexnecom_wbssummit' created successfully<br>";
 } else {
     echo "✗ Error creating database: " . $mysqli->error . "<br>";
 }
 
 // Select database
-$mysqli->select_db('wbs_summit');
+$mysqli->select_db('yexnecom_wbssummit');
 
 // Create registrations table
 $sql = "CREATE TABLE IF NOT EXISTS registrations (
