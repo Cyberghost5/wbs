@@ -3,8 +3,8 @@
 composer.lock
 
 # Configuration
-config/email_config.php
-config/database.php
+# config/email_config.php
+# config/database.php
 
 # IDE
 .vscode/
