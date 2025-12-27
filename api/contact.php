@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Load dependencies
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/email_config.php';
+require_once __DIR__ . '/../config/database.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -61,6 +62,13 @@ $subject = htmlspecialchars(trim($data['subject']));
 $message = htmlspecialchars(trim($data['message']));
 
 try {
+    // Save to database
+    $messageId = saveContactMessage($name, $email, $subject, $message);
+    
+    if (!$messageId) {
+        throw new Exception('Failed to save message to database');
+    }
+    
     // Send notification to admin
     $adminMailSent = sendContactNotification($name, $email, $subject, $message);
     
@@ -250,12 +258,38 @@ function getContactConfirmationTemplate($name, $subject) {
                 <strong>WBS 2026 Team</strong><br>
                 Worklink Consulting</p>
             </div>
-            <div class='footer'>
-                <p>&copy; 2026 Worklink Consulting. All rights reserved.</p>
-                <p>World Branding and Signage Summit | April 24, 2026 | Nigeria, Africa</p>
-            </div>
         </div>
     </body>
     </html>
     ";
+}
+
+/**
+ * Save contact message to database
+ */
+function saveContactMessage($name, $email, $subject, $message) {
+    $db = getDBConnection();
+    
+    if (!$db) {
+        error_log("Failed to get database connection");
+        return false;
+    }
+    
+    $stmt = $db->prepare("INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)");
+    
+    if (!$stmt) {
+        error_log("Prepare failed: " . $db->error);
+        $db->close();
+        return false;
+    }
+    
+    $stmt->bind_param("ssss", $name, $email, $subject, $message);
+    
+    $success = $stmt->execute();
+    $insertId = $success ? $stmt->insert_id : false;
+    
+    $stmt->close();
+    $db->close();
+    
+    return $insertId;
 }

@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Load dependencies
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/email_config.php';
+require_once __DIR__ . '/../config/database.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -66,12 +67,29 @@ $delegateType = htmlspecialchars(trim($data['delegateType']));
 $hotelChoice = !empty($data['hotelChoice']) ? htmlspecialchars(trim($data['hotelChoice'])) : 'N/A';
 $dietary = !empty($data['dietary']) ? htmlspecialchars(trim($data['dietary'])) : 'None';
 $expectations = !empty($data['expectations']) ? htmlspecialchars(trim($data['expectations'])) : 'Not provided';
-$newsletter = !empty($data['newsletter']) ? 'Yes' : 'No';
-
-// Save registration to database or file (for now, we'll just send emails)
-// In production, save this to a database
+$newsletter = !empty($data['newsletter']) ? 1 : 0;
 
 try {
+    // Save to database
+    $registrationId = saveRegistration([
+        'firstName' => $firstName,
+        'lastName' => $lastName,
+        'email' => $email,
+        'phone' => $phone,
+        'country' => $country,
+        'organization' => $organization,
+        'position' => $position,
+        'delegateType' => $delegateType,
+        'hotelChoice' => $hotelChoice,
+        'dietary' => $dietary,
+        'expectations' => $expectations,
+        'newsletter' => $newsletter
+    ]);
+    
+    if (!$registrationId) {
+        throw new Exception('Failed to save registration to database');
+    }
+    
     // Send confirmation email to user
     $userMailSent = sendUserConfirmation($email, $firstName, $lastName, $delegateType);
     
@@ -180,10 +198,10 @@ function getConfirmationEmailTemplate($firstName, $lastName, $delegateType, $del
     $paymentInstructions = $delegateType === 'local'
         ? '<p><strong>Payment Instructions (Local Delegate):</strong><br>
            Amount: ₦40,000 ($30 USD)<br>
-           Bank: [Bank Name]<br>
-           Account Number: [Account Number]<br>
-           Account Name: Worklink Consulting<br><br>
-           Please send your payment confirmation to: payments@worklinkconsulting.com</p>'
+           Bank: Access Bank<br>
+           Account Number: 1931500038<br>
+           Account Name: Workerlink Consulting<br><br>
+           Please send your payment confirmation to: info@wbssummit.com.ng</p>'
         : '<p><strong>Payment Instructions (Foreign Delegate):</strong><br>
            Amount: $300 USD<br>
            We will send detailed payment instructions and an official invitation letter within 24 hours.<br><br>
@@ -292,10 +310,56 @@ function getAdminNotificationTemplate($data) {
                     <tr><td>Newsletter</td><td>" . (!empty($data['newsletter']) ? 'Yes' : 'No') . "</td></tr>
                 </table>
                 
-                <p><strong>Registration Time:</strong> " . date('F j, Y, g:i a') . "</p>
-            </div>
         </div>
     </body>
     </html>
     ";
+}
+
+/**
+ * Save registration to database
+ */
+function saveRegistration($data) {
+    $db = getDBConnection();
+    
+    if (!$db) {
+        error_log("Failed to get database connection");
+        return false;
+    }
+    
+    $stmt = $db->prepare("INSERT INTO registrations (
+        first_name, last_name, email, phone, country, 
+        organization, position, delegate_type, hotel_choice, 
+        dietary, expectations, newsletter
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+    if (!$stmt) {
+        error_log("Prepare failed: " . $db->error);
+        $db->close();
+        return false;
+    }
+    
+    $stmt->bind_param(
+        "sssssssssssi",
+        $data['firstName'],
+        $data['lastName'],
+        $data['email'],
+        $data['phone'],
+        $data['country'],
+        $data['organization'],
+        $data['position'],
+        $data['delegateType'],
+        $data['hotelChoice'],
+        $data['dietary'],
+        $data['expectations'],
+        $data['newsletter']
+    );
+    
+    $success = $stmt->execute();
+    $insertId = $success ? $stmt->insert_id : false;
+    
+    $stmt->close();
+    $db->close();
+    
+    return $insertId;
 }
