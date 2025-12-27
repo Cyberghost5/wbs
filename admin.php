@@ -3,7 +3,7 @@ require_once __DIR__ . '/config/database.php';
 
 // Simple password protection
 session_start();
-$admin_password = 'wbs2026admin'; // Change this!
+$admin_password = 'Wbssummit@2025'; // Change this!
 
 if (!isset($_SESSION['admin_logged_in'])) {
     if (isset($_POST['password']) && $_POST['password'] === $admin_password) {
