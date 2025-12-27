@@ -76,6 +76,7 @@ function showLoginForm() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WBS 2026 - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; }
@@ -106,7 +107,7 @@ function showLoginForm() {
 </head>
 <body>
     <div class="header">
-        <h1>🎯 WBS 2026 Admin Dashboard</h1>
+        <h1><i class="fas fa-bullseye"></i> WBS 2026 Admin Dashboard</h1>
         <a href="?logout=1" class="logout">Logout</a>
         <div style="clear: both;"></div>
     </div>
@@ -136,7 +137,7 @@ function showLoginForm() {
         </div>
 
         <div class="section">
-            <h2>📝 Recent Registrations</h2>
+            <h2><i class="fas fa-clipboard-list"></i> Recent Registrations</h2>
             <button class="export-btn" onclick="exportToCSV('registrations')">Export Registrations</button>
             <?php if ($registrations->num_rows > 0): ?>
                 <table id="registrations-table">
@@ -177,7 +178,7 @@ function showLoginForm() {
         </div>
 
         <div class="section">
-            <h2>💬 Contact Messages</h2>
+            <h2><i class="fas fa-comments"></i> Contact Messages</h2>
             <button class="export-btn" onclick="exportToCSV('messages')">Export Messages</button>
             <?php if ($messages->num_rows > 0): ?>
                 <table id="messages-table">
