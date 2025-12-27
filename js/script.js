@@ -1,4 +1,42 @@
 // ===================================
+// Modern Notification System
+// ===================================
+function showNotification(message, type = 'success') {
+    // Remove existing notifications
+    const existing = document.querySelector('.notification-toast');
+    if (existing) existing.remove();
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification-toast notification-${type}`;
+    
+    const icon = type === 'success' ? '<i class="fas fa-check-circle"></i>' : 
+                 type === 'error' ? '<i class="fas fa-exclamation-circle"></i>' : 
+                 '<i class="fas fa-info-circle"></i>';
+    
+    notification.innerHTML = `
+        ${icon}
+        <div class="notification-content">
+            <div class="notification-message">${message}</div>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => notification.classList.add('show'), 10);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// ===================================
 // Registration Form Modal
 // ===================================
 function openRegistrationForm(type) {
@@ -59,14 +97,17 @@ function initRegistrationForm() {
             const result = await response.json();
             
             if (result.success) {
-                alert(`Registration successful!\n\n${result.message}`);
+                showNotification(result.message, 'success');
                 closeRegistrationForm();
             } else {
-                alert(`Registration failed:\n${result.message}\n\n${result.errors ? result.errors.join('\n') : ''}`);
+                const errorMsg = result.errors ? 
+                    `${result.message}<br><small>${result.errors.join('<br>')}</small>` : 
+                    result.message;
+                showNotification(errorMsg, 'error');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error submitting registration. Please check your connection and try again.');
+            showNotification('Error submitting registration. Please check your connection and try again.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
@@ -209,14 +250,14 @@ function initContactForm() {
             const result = await response.json();
             
             if (result.success) {
-                alert(result.message);
+                showNotification(result.message, 'success');
                 contactForm.reset();
             } else {
-                alert(`Error: ${result.message}`);
+                showNotification(result.message, 'error');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error sending message. Please try again later.');
+            showNotification('Error sending message. Please try again later.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
