@@ -4,9 +4,9 @@
  */
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');           // Default XAMPP user
-define('DB_PASS', '');               // Default XAMPP password (empty)
-define('DB_NAME', 'wbs_summit');     // Database name
+define('DB_USER', 'yexnecom_wbssummit');           // Default XAMPP user
+define('DB_PASS', 'yexnecom_wbssummit');               // Default XAMPP password (empty)
+define('DB_NAME', 'yexnecom_wbssummit');     // Database name
 
 /**
  * Get database connection
