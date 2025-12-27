@@ -1799,27 +1799,28 @@ section {
    Modern Notification Toast
    =================================== */
 .notification-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    padding: 20px 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    max-width: 420px;
-    min-width: 320px;
-    z-index: 10000;
-    transform: translateX(500px);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    background: white !important;
+    padding: 20px 25px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    max-width: 420px !important;
+    min-width: 320px !important;
+    z-index: 99999 !important;
+    transform: translateX(500px) !important;
+    opacity: 0 !important;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+    margin: 0 !important;
 }
 
 .notification-toast.show {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
 }
 
 .notification-toast i {
