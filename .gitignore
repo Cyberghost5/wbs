@@ -1,6 +1,6 @@
 # Composer
-/vendor/
-composer.lock
+# /vendor/
+# composer.lock
 
 # Configuration
 # config/email_config.php

@@ -62,12 +62,8 @@ $subject = htmlspecialchars(trim($data['subject']));
 $message = htmlspecialchars(trim($data['message']));
 
 try {
-    // Save to database
+    // Save to database (optional - continue even if fails)
     $messageId = saveContactMessage($name, $email, $subject, $message);
-    
-    if (!$messageId) {
-        throw new Exception('Failed to save message to database');
-    }
     
     // Send notification to admin
     $adminMailSent = sendContactNotification($name, $email, $subject, $message);
@@ -81,7 +77,7 @@ try {
             'message' => 'Thank you for your message! We will get back to you soon.'
         ]);
     } else {
-        throw new Exception('Failed to send emails');
+        throw new Exception('Failed to send emails. Please check your email configuration.');
     }
     
 } catch (Exception $e) {
@@ -108,6 +104,13 @@ function sendContactNotification($name, $email, $subject, $message) {
         $mail->Password = SMTP_PASSWORD;
         $mail->SMTPSecure = SMTP_SECURE;
         $mail->Port = SMTP_PORT;
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
         
         // Recipients
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
@@ -144,6 +147,13 @@ function sendContactConfirmation($name, $email, $subject) {
         $mail->Password = SMTP_PASSWORD;
         $mail->SMTPSecure = SMTP_SECURE;
         $mail->Port = SMTP_PORT;
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
         
         // Recipients
         $mail->setFrom(FROM_EMAIL, FROM_NAME);

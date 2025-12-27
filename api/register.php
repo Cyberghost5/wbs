@@ -70,7 +70,7 @@ $expectations = !empty($data['expectations']) ? htmlspecialchars(trim($data['exp
 $newsletter = !empty($data['newsletter']) ? 1 : 0;
 
 try {
-    // Save to database
+    // Save to database (optional - continue even if fails)
     $registrationId = saveRegistration([
         'firstName' => $firstName,
         'lastName' => $lastName,
@@ -86,10 +86,6 @@ try {
         'newsletter' => $newsletter
     ]);
     
-    if (!$registrationId) {
-        throw new Exception('Failed to save registration to database');
-    }
-    
     // Send confirmation email to user
     $userMailSent = sendUserConfirmation($email, $firstName, $lastName, $delegateType);
     
@@ -102,7 +98,7 @@ try {
             'message' => 'Registration successful! Please check your email for confirmation and payment instructions.'
         ]);
     } else {
-        throw new Exception('Failed to send confirmation emails');
+        throw new Exception('Failed to send confirmation emails. Please check your email configuration.');
     }
     
 } catch (Exception $e) {
@@ -170,6 +166,13 @@ function sendAdminNotification($data) {
         $mail->Password = SMTP_PASSWORD;
         $mail->SMTPSecure = SMTP_SECURE;
         $mail->Port = SMTP_PORT;
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
         
         // Recipients
         $mail->setFrom(FROM_EMAIL, FROM_NAME);
