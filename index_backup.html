@@ -14,137 +14,260 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="container nav-container">
+        <div class="container">
             <div class="logo">
-                <!-- <img src="https://placehold.co/50x50/FF6B35/white?text=W" alt="WBS Logo" class="logo-icon"> -->
-                <div class="logo-text-container">
-                    <span class="logo-text">WBS<span class="year">2026</span></span>
-                    <span class="logo-subtitle">Workerlink Business Summit</span>
-                </div>
+                <span class="logo-text">WBS<span class="year">2026</span></span>
+                <span class="logo-subtitle">Worklink Consulting</span>
             </div>
-            <div class="nav-right">
-                <!-- <a href="#register" class="btn-register-nav">REGISTER</a> -->
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#why-attend" class="nav-link">Why Attend</a></li>
                 <li><a href="#schedule" class="nav-link">Schedule</a></li>
-                <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#register" class="nav-link btn-register">Register Now</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Slider Section -->
-    <section class="hero-slider" id="home">
-        <!-- Slider Container -->
-        <div class="slider-wrapper">
-            <!-- Slide 1 -->
-            <div class="slide active">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80" alt="Business Conference" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">FOCUS:</h1>
-                        <h2 class="slide-subtitle">GLOBAL BRANDING<br>& SIGNAGE</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Global Branding & Signage Summit</h1>
+                <div class="hero-year">2026</div>
+                <div class="event-badge">Organized by Worklink Consulting</div>
+                <p class="hero-subtitle">Repositioning Nigeria and Africa on the World Stage</p>
+                <div class="hero-tagline">Visually. Economically. Culturally.</div>
+                
+                <div class="event-info-grid">
+                    <div class="event-info-item">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div>
+                            <strong>April 24, 2026</strong>
+                            <span>Summit Day</span>
+                        </div>
+                    </div>
+                    <div class="event-info-item">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div>
+                            <strong>Nigeria</strong>
+                            <span>Africa</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Slide 2 -->
-            <div class="slide">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1920&q=80" alt="Innovation" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">REPOSITIONING</h1>
-                        <h2 class="slide-subtitle">AFRICA ON THE<br>WORLD STAGE</h2>
+
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">000</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Slide 3 -->
-            <div class="slide">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80" alt="Team Collaboration" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">JOIN US</h1>
-                        <h2 class="slide-subtitle">APRIL 24, 2026<br>ABUJA, NIGERIA</h2>
-                    </div>
+
+                <div class="hero-buttons">
+                    <a href="#register" class="btn btn-primary">Register Now</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
                 </div>
             </div>
         </div>
-        
-        <!-- Event Date Banner -->
-        <div class="event-date-banner">
-            <div class="marquee">
-                <span class="marquee-content">
-                    <span class="banner-arrow">◄</span>
-                    <span class="banner-text">24TH APRIL, 2026. ABUJA</span>
-                    <span class="banner-arrow">►</span>
-                </span>
-            </div>
-        </div>
-        
-        <!-- Slider Navigation -->
-        <div class="slider-nav">
-            <button class="slider-btn prev-btn" id="prevBtn">‹</button>
-            <button class="slider-btn next-btn" id="nextBtn">›</button>
+        <div class="scroll-indicator">
+            <span></span>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <div class="about-content-new">
-                <p class="about-intro">WBS 2026 creates a platform where global experts meet African leaders, designers, technologists, city managers and investors to rethink how branding and signage can reposition Nigeria and Africa on the world stage - Visually, Economically and Culturally.</p>
-                
-                <p class="about-text">Africa is rising, yet the our cities, institutions, businesses, and public spaces are branded often fails to reflect our true potential. Across Nigeria and the continent, inconsistent signage systems, poor wayfinding, weak visual identity, and the absence of globally accepted branding standards continue to shape negative perceptions, limit tourism growth, discourage investment, and weaken national image.</p>
-                
-                <p class="about-text">WBS 2026 is intentionally focused on World Branding and Signage because branding is not just design—it is identity, direction, and experience. From airports to highways, hospitals to heritage sites, signage is the silent ambassador of a nation.</p>
-                <button class="read-more-toggle" data-target="aboutMore">Read more</button>
-                <div class="about-more" id="aboutMore">
-                    <p class="about-text">When done right, it communicates safety, professionalism, culture, and global readiness. When done poorly, it exposes gaps in planning, governance, and innovation.</p>
+            <div class="section-header">
+                <h2 class="section-title">About WBS 2026</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <!-- Organizer Highlight -->
+            <div class="organizer-highlight">
+                <h3 class="organizer-header">ORGANIZED BY WORKLINK CONSULTING</h3>
+                <p class="organizer-tagline">A forward-thinking business and development consulting firm committed to connecting ideas, people, and opportunities into impactful results.</p>
+            </div>
 
-                    <p class="about-text">This summit addresses the loopholes and gaps holding Africa back:</p>
-                    <ul class="about-list">
-                        <li>Lack of unified national and city branding strategies</li>
-                        <li>Poor signage standards and maintenance</li>
-                        <li>Limited collaboration between designers, urban planners, policymakers, and investors</li>
-                        <li>Minimal adoption of inclusive, smart, and globally compliant signage systems</li>
-                    </ul>
-
-                    <p class="about-text">We deliberately chose April to align with two globally significant creative milestones:</p>
-                    <ul class="about-list">
-                        <li><strong>World Art Day</strong> – April 15</li>
-                        <li><strong>International Design Day</strong> – April 27</li>
-                    </ul>
-
-                    <p class="about-text">This timing reinforces our commitment to creativity, innovation, and purposeful design as tools for national development and global relevance.</p>
-
-                    <p class="about-text">By attending WBS 2026, international delegates gain insight into one of the world's fastest-growing markets, while Nigerian participants gain access to global standards, partnerships, and future-facing ideas that can transform cities, businesses, and public spaces.</p>
-
-                    <p class="about-text">This is more than a summit. It is a movement to redesign perception, restore identity, and reshape Africa's global image—starting with Nigeria.</p>
-
-                    <p class="about-text"><strong>Register now</strong> and be part of the conversation shaping the future of world branding and signage.</p>
-                </div>
-                
-                <!-- CTA Buttons -->
-                <div class="cta-buttons">
-                    <div class="cta-row">
-                        <a href="#" class="cta-btn cta-brochure">SUBMIT BROCHURE</a>
-                        <a href="#" class="cta-btn cta-sponsor">BECOME A SPONSOR</a>
+            <div class="about-content">
+                <div class="about-main">
+                    <p class="lead">WBS 2026 creates a platform where global experts meet African leaders, designers, technologists, city managers, and investors to rethink how branding and signage can reposition Nigeria and Africa on the world stage.</p>
+                    
+                    <div class="mission-grid">
+                        <div class="mission-item">
+                            <div class="mission-icon"><i class="fas fa-palette"></i></div>
+                            <h3>Visually</h3>
+                            <p>Transforming Africa's visual identity through innovative branding and signage solutions</p>
+                        </div>
+                        <div class="mission-item">
+                            <div class="mission-icon"><i class="fas fa-briefcase"></i></div>
+                            <h3>Economically</h3>
+                            <p>Creating economic opportunities through strategic branding and business development</p>
+                        </div>
+                        <div class="mission-item">
+                            <div class="mission-icon"><i class="fas fa-globe-africa"></i></div>
+                            <h3>Culturally</h3>
+                            <p>Celebrating and promoting Africa's rich cultural heritage on the global stage</p>
+                        </div>
                     </div>
-                    <div class="cta-row">
-                        <a href="#" class="cta-btn cta-exhibit">EXHIBIT AT THE SUMMIT</a>
-                        <a href="#register" class="cta-btn cta-register">REGISTER TO ATTEND</a>
+
+                    <div class="focus-area">
+                        <h3>Our Focus</h3>
+                        <p>We are focused on improvement and development in Africa, identifying and addressing the loopholes that have hindered progress. WBS 2026 is committed to creating actionable solutions that drive real change across the continent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Attend Section -->
+    <section class="why-attend" id="why-attend">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Attend WBS 2026?</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Join the conversation shaping Africa's future</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Network with Global Experts</h3>
+                    <p>Connect with international branding professionals, designers, and industry leaders</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Learn Best Practices</h3>
+                    <p>Gain insights into cutting-edge branding and signage strategies from around the world</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Discover Opportunities</h3>
+                    <p>Explore investment and collaboration opportunities in Africa's growing market</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Drive Innovation</h3>
+                    <p>Be part of the movement transforming Africa's visual and economic landscape</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Showcase Excellence</h3>
+                    <p>Present your work and achievements to a diverse audience of stakeholders</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Access Market Insights</h3>
+                    <p>Understand the unique challenges and opportunities in African markets</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule & Key Dates -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Schedule & Key Dates</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <div class="dates-highlight">
+                <div class="date-card special">
+                    <div class="date-icon"><i class="fas fa-palette"></i></div>
+                    <h3>World Art Day</h3>
+                    <p class="date">April 15, 2026</p>
+                    <p class="description">Celebrating creativity and artistic expression worldwide</p>
+                </div>
+                <div class="date-card main-event">
+                    <div class="date-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>WBS Summit Day</h3>
+                    <p class="date">April 24, 2026</p>
+                    <p class="description">The main event - Global Branding & Signage Summit</p>
+                </div>
+                <div class="date-card special">
+                    <div class="date-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>International Design Day</h3>
+                    <p class="date">April 27, 2026</p>
+                    <p class="description">Honoring design's impact on our world</p>
+                </div>
+            </div>
+
+            <div class="schedule-content">
+                <h3 class="schedule-heading">Summit Day Agenda - April 24, 2026</h3>
+                <div class="schedule-timeline">
+                    <div class="schedule-item">
+                        <div class="schedule-time">8:00 AM - 9:00 AM</div>
+                        <div class="schedule-details">
+                            <h4>Registration & Welcome</h4>
+                            <p>Tea break, networking, and materials distribution</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item highlight">
+                        <div class="schedule-time">9:00 AM - 10:30 AM</div>
+                        <div class="schedule-details">
+                            <h4>Opening Ceremony & Keynote Address</h4>
+                            <p>Repositioning Africa: The Power of Visual Identity</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:45 AM - 12:30 PM</div>
+                        <div class="schedule-details">
+                            <h4>Panel Discussion</h4>
+                            <p>Global Experts Meet African Leaders: Bridging the Gap</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">12:30 PM - 2:00 PM</div>
+                        <div class="schedule-details">
+                            <h4>Networking Lunch</h4>
+                            <p>Connect with delegates, investors, and industry leaders</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">2:00 PM - 3:30 PM</div>
+                        <div class="schedule-details">
+                            <h4>Breakout Sessions</h4>
+                            <p>Technology • Design • Investment • Urban Planning</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">3:45 PM - 5:00 PM</div>
+                        <div class="schedule-details">
+                            <h4>Workshop & Case Studies</h4>
+                            <p>Success stories and actionable strategies for African markets</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item highlight">
+                        <div class="schedule-time">5:00 PM - 6:00 PM</div>
+                        <div class="schedule-details">
+                            <h4>Closing Remarks & Way Forward</h4>
+                            <p>Commitments, partnerships, and next steps</p>
+                        </div>
                     </div>
                 </div>
             </div>

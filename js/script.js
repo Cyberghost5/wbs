@@ -130,6 +130,103 @@ function initRegistrationForm() {
 }
 
 // ===================================
+// Hero Slider
+// ===================================
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(n) {
+        // Remove active class from all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+
+        // Wrap around if necessary
+        if (n >= slides.length) {
+            currentSlide = 0;
+        } else if (n < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = n;
+        }
+
+        // Add active class to current slide
+        slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+    }
+
+    // Event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide after manual navigation
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide after manual navigation
+        });
+    }
+
+    // Pause on hover
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    if (sliderWrapper) {
+        sliderWrapper.addEventListener('mouseenter', stopAutoSlide);
+        sliderWrapper.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    // Start auto-slide
+    startAutoSlide();
+}
+
+// ===================================
+// Read More Toggle
+// ===================================
+function initReadMore() {
+    const toggles = document.querySelectorAll('.read-more-toggle');
+    toggles.forEach(toggle => {
+        const targetId = toggle.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        // Ensure collapsed on load
+        target.style.maxHeight = '0px';
+
+        toggle.addEventListener('click', () => {
+            const expanded = target.classList.toggle('expanded');
+            if (expanded) {
+                target.style.maxHeight = target.scrollHeight + 'px';
+                toggle.textContent = 'Read less';
+            } else {
+                target.style.maxHeight = '0px';
+                toggle.textContent = 'Read more';
+            }
+        });
+    });
+}
+
+// ===================================
 // Countdown Timer
 // ===================================
 function initCountdown() {
@@ -140,7 +237,10 @@ function initCountdown() {
         const timeLeft = eventDate - now;
         
         if (timeLeft < 0) {
-            document.getElementById('countdown').innerHTML = '<p class="event-live">Event is Live!</p>';
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                countdownEl.innerHTML = '<p class="event-live">Event is Live!</p>';
+            }
             return;
         }
         
@@ -149,10 +249,15 @@ function initCountdown() {
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         
-        document.getElementById('days').textContent = String(days).padStart(3, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        if (daysEl) daysEl.textContent = String(days).padStart(3, '0');
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
     }
     
     updateCountdown();
@@ -338,6 +443,7 @@ function initActiveNavigation() {
 // Initialize All Functions
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
+    initHeroSlider();
     initCountdown();
     initSmoothScroll();
     initMobileNav();
@@ -346,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initActiveNavigation();
     initRegistrationForm();
+    initReadMore();
     
     // Add loading animation complete
     document.body.classList.add('loaded');
