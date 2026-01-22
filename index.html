@@ -10,17 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <!-- <img src="https://placehold.co/50x50/FF6B35/white?text=W" alt="WBS Logo" class="logo-icon"> -->
-                <div class="logo-text-container">
+                <img src="assets/images/linelogo.png" alt="WBS Logo" class="logo-icon" width="200">
+                <!-- <div class="logo-text-container">
                     <span class="logo-text">WBS<span class="year">2026</span></span>
                     <span class="logo-subtitle">Workerlink Business Summit</span>
-                </div>
+                </div> -->
             </div>
             <div class="nav-right">
                 <!-- <a href="#register" class="btn-register-nav">REGISTER</a> -->
@@ -47,38 +48,14 @@
         <div class="slider-wrapper">
             <!-- Slide 1 -->
             <div class="slide active">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80" alt="Business Conference" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">FOCUS:</h1>
-                        <h2 class="slide-subtitle">GLOBAL BRANDING<br>& SIGNAGE</h2>
-                    </div>
-                </div>
+                <!-- <div class="slide-overlay"></div> -->
+                <img src="assets/images/banner1.jpeg" alt="Business Conference" class="slide-bg">
             </div>
             
             <!-- Slide 2 -->
             <div class="slide">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1920&q=80" alt="Innovation" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">REPOSITIONING</h1>
-                        <h2 class="slide-subtitle">AFRICA ON THE<br>WORLD STAGE</h2>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Slide 3 -->
-            <div class="slide">
-                <div class="slide-overlay"></div>
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80" alt="Team Collaboration" class="slide-bg">
-                <div class="container">
-                    <div class="slide-content">
-                        <h1 class="slide-title">JOIN US</h1>
-                        <h2 class="slide-subtitle">APRIL 24, 2026<br>ABUJA, NIGERIA</h2>
-                    </div>
-                </div>
+                <!-- <div class="slide-overlay"></div> -->
+                <img src="assets/images/banner3.jpeg" alt="Innovation" class="slide-bg">
             </div>
         </div>
         
@@ -139,10 +116,6 @@
                 <!-- CTA Buttons -->
                 <div class="cta-buttons">
                     <div class="cta-row">
-                        <a href="#" class="cta-btn cta-brochure">SUBMIT BROCHURE</a>
-                        <a href="#" class="cta-btn cta-sponsor">BECOME A SPONSOR</a>
-                    </div>
-                    <div class="cta-row">
                         <a href="#" class="cta-btn cta-exhibit">EXHIBIT AT THE SUMMIT</a>
                         <a href="#register" class="cta-btn cta-register">REGISTER TO ATTEND</a>
                     </div>
@@ -163,22 +136,42 @@
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Local Delegate</h3>
+                        <h3>Abuja Delegate</h3>
                         <div class="price-display">
                             <span class="currency">₦</span>
                             <span class="amount">40,000</span>
                         </div>
-                        <p class="price-usd">($30 USD)</p>
+                        <p class="price-usd">40K</p>
                     </div>
                     <ul class="pricing-features">
-                        <li>✓ Full summit access</li>
-                        <li>✓ Tea break included</li>
-                        <li>✓ Lunch provided</li>
-                        <li>✓ Summit materials</li>
+                        <li>✓ Full access to summit venue &amp; event</li>
+                        <li>✓ Tea break &amp; Lunch</li>
+                        <li>✓ Complete Summit delegate materials</li>
+                        <li>✓ Exclusive pitching opportunities</li>
                         <li>✓ Certificate of attendance</li>
-                        <li>✓ Networking opportunities</li>
                     </ul>
-                    <button class="btn btn-pricing" onclick="openRegistrationForm('local')">Register as Local Delegate</button>
+                    <button class="btn btn-pricing" onclick="openRegistrationForm('local')">Register as Abuja Delegate</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>State Delegate</h3>
+                        <div class="price-display">
+                            <span class="currency">₦</span>
+                            <span class="amount">150,000</span>
+                        </div>
+                        <p class="price-usd">150k</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ 1 night hotel accommodation</li>
+                        <li>✓ Full access to summit</li>
+                        <li>✓ Venue & event access</li>
+                        <li>✓ Tea break & Lunch</li>
+                        <li>✓ Complete Summit delegate materials</li>
+                        <li>✓ Exclusive pitching opportunities</li>
+                        <li>✓ Certificate of attendance</li>
+                    </ul>
+                    <button class="btn btn-pricing" onclick="openRegistrationForm('state')">Register as State Delegate</button>
                 </div>
 
                 <div class="pricing-card featured">
@@ -189,16 +182,16 @@
                             <span class="currency">$</span>
                             <span class="amount">300</span>
                         </div>
-                        <p class="price-usd">USD</p>
+                        <p class="price-usd">$300</p>
                     </div>
                     <ul class="pricing-features">
-                        <li>✓ Full summit access</li>
-                        <li>✓ Official invitation letter</li>
-                        <li>✓ Travel guidance & support</li>
-                        <li>✓ 2-night hotel accommodation</li>
-                        <li>✓ All meals included</li>
-                        <li>✓ Summit materials</li>
-                        <li>✓ Airport pickup arrangement</li>
+                        <li>✓ Invitation letter</li>
+                        <li>✓ Airport Pickup</li>
+                        <li>✓ 1 night Hotel Accommodation</li>
+                        <li>✓ Full access to summit venue &amp; event</li>
+                        <li>✓ Tea break &amp; Lunch</li>
+                        <li>✓ Complete Summit delegate materials</li>
+                        <li>✓ Exclusive pitching opportunities</li>
                         <li>✓ Certificate of attendance</li>
                     </ul>
                     <button class="btn btn-pricing" onclick="openRegistrationForm('foreign')">Register as Foreign Delegate</button>

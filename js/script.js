@@ -52,6 +52,10 @@ function openRegistrationForm(type) {
         modalTitle.textContent = 'Local Delegate Registration - ₦40,000';
         hotelPreference.style.display = 'none';
         dietaryReq.style.display = 'none';
+    } else if (type === 'state') {
+        modalTitle.textContent = 'State Delegate Registration - ₦150,000';
+        hotelPreference.style.display = 'block';
+        dietaryReq.style.display = 'none';
     } else {
         modalTitle.textContent = 'Foreign Delegate Registration - $300';
         hotelPreference.style.display = 'block';
@@ -223,6 +227,22 @@ function initReadMore() {
                 toggle.textContent = 'Read more';
             }
         });
+    });
+}
+
+// Apply per-image focal positioning for slides (reads optional `data-focus` attribute)
+function applySlideFocalPoints() {
+    const slides = document.querySelectorAll('.slide-bg');
+    slides.forEach(img => {
+        const focus = img.getAttribute('data-focus');
+        if (focus) {
+            img.style.objectPosition = focus;
+        } else {
+            img.style.objectPosition = 'center center';
+        }
+        img.style.objectFit = 'cover';
+        img.style.width = '100%';
+        img.style.height = '100%';
     });
 }
 
@@ -443,6 +463,7 @@ function initActiveNavigation() {
 // Initialize All Functions
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
+    applySlideFocalPoints();
     initHeroSlider();
     initCountdown();
     initSmoothScroll();
