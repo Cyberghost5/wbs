@@ -107,8 +107,13 @@ function initRegistrationForm() {
             }
             
             if (response.ok && result.success) {
-                showNotification(result.message, 'success');
+                const delegateTypeValue = data.delegateType || 'local';
+                const registrationRef = result.registrationId || result.reference || result.id || '';
+                // Close registration modal then open payment modal with details
                 closeRegistrationForm();
+                const amountText = delegateTypeValue === 'foreign' ? '$300' : (delegateTypeValue === 'state' ? '₦150,000' : '₦40,000');
+                openPaymentModal(amountText, delegateTypeValue, registrationRef);
+                showNotification(result.message || 'Registration successful. Complete payment below.', 'success');
             } else {
                 const errorMsg = result.errors ? 
                     `${result.message}<br><small>${result.errors.join('<br>')}</small>` : 
@@ -131,6 +136,104 @@ function initRegistrationForm() {
             closeRegistrationForm();
         }
     });
+}
+
+// ===================================
+// Payment Modal + Upload Handling
+// ===================================
+function openPaymentModal(amountText, delegateType, registrationRef) {
+    const modal = document.getElementById('paymentModal');
+    const paymentAmount = document.getElementById('paymentAmount');
+    const paymentDelegateType = document.getElementById('paymentDelegateType');
+    const registrationRefInput = document.getElementById('registrationRef');
+
+    if (paymentAmount) paymentAmount.textContent = amountText;
+    if (paymentDelegateType) paymentDelegateType.value = delegateType || '';
+    if (registrationRefInput) registrationRefInput.value = registrationRef || '';
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePaymentModal() {
+    const modal = document.getElementById('paymentModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    // reset form
+    const paymentForm = document.getElementById('paymentForm');
+    if (paymentForm) paymentForm.reset();
+}
+
+function initPaymentForm() {
+    const paymentForm = document.getElementById('paymentForm');
+    if (!paymentForm) return;
+
+    paymentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('proofFile');
+        if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+            showNotification('Please choose a file to upload.', 'error');
+            return;
+        }
+
+        const file = fileInput.files[0];
+        const allowedTypes = ['image/jpeg','image/png','image/jpg','application/pdf'];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+
+        if (!allowedTypes.includes(file.type)) {
+            showNotification('Invalid file type. Please upload JPG, PNG, or PDF.', 'error');
+            return;
+        }
+
+        if (file.size > maxSize) {
+            showNotification('File too large. Maximum size is 5MB.', 'error');
+            return;
+        }
+
+        const formData = new FormData(paymentForm);
+        formData.append('proofFile', file);
+
+        const submitBtn = paymentForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Uploading...';
+        }
+
+        try {
+            const resp = await fetch('api/upload_payment.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await resp.json().catch(() => null);
+
+            if (resp.ok && result && result.success) {
+                showNotification(result.message || 'Proof uploaded successfully.', 'success');
+                closePaymentModal();
+            } else {
+                const msg = (result && result.message) ? result.message : 'Upload failed. Please try again.';
+                showNotification(msg, 'error');
+            }
+        } catch (err) {
+            console.error('Upload error:', err);
+            showNotification('Error uploading file. Check your connection.', 'error');
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+    });
+
+    // Close modal when clicking outside
+    const paymentModal = document.getElementById('paymentModal');
+    if (paymentModal) {
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) closePaymentModal();
+        });
+    }
 }
 
 // ===================================
@@ -473,6 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initActiveNavigation();
     initRegistrationForm();
+    initPaymentForm();
     initReadMore();
     
     // Add loading animation complete

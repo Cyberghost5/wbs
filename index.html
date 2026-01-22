@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Global Branding and Signage Summit 2026 - Repositioning Africa on the World Stage">
-    <title>WBS 2026 | Global Branding and Signage Summit</title>
+    <meta name="description" content="Global Branding Summit 2026 - Repositioning Africa on the World Stage">
+    <title>WBS 2026 | Global Branding Summit</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,13 +49,13 @@
             <!-- Slide 1 -->
             <div class="slide active">
                 <!-- <div class="slide-overlay"></div> -->
-                <img src="assets/images/banner1.jpeg" alt="Business Conference" class="slide-bg">
+                <img src="assets/images/banner1.jpeg" alt="Business Conference" class="slide-bg" data-focus="left center">
             </div>
             
             <!-- Slide 2 -->
             <div class="slide">
                 <!-- <div class="slide-overlay"></div> -->
-                <img src="assets/images/banner3.jpeg" alt="Innovation" class="slide-bg">
+                <img src="assets/images/banner3.jpeg" alt="Innovation" class="slide-bg" data-focus="center center">
             </div>
         </div>
         
@@ -81,11 +81,11 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about-content-new">
-                <p class="about-intro">WBS 2026 creates a platform where global experts meet African leaders, designers, technologists, city managers and investors to rethink how branding and signage can reposition Nigeria and Africa on the world stage - Visually, Economically and Culturally.</p>
+                <p class="about-intro">WBS 2026 creates a platform where global experts meet African leaders, designers, technologists, city managers and investors to rethink how branding can reposition Nigeria and Africa on the world stage - Visually, Economically and Culturally.</p>
                 
                 <p class="about-text">Africa is rising, yet the our cities, institutions, businesses, and public spaces are branded often fails to reflect our true potential. Across Nigeria and the continent, inconsistent signage systems, poor wayfinding, weak visual identity, and the absence of globally accepted branding standards continue to shape negative perceptions, limit tourism growth, discourage investment, and weaken national image.</p>
                 
-                <p class="about-text">WBS 2026 is intentionally focused on World Branding and Signage because branding is not just design—it is identity, direction, and experience. From airports to highways, hospitals to heritage sites, signage is the silent ambassador of a nation.</p>
+                <p class="about-text">WBS 2026 is intentionally focused on World Branding because branding is not just design—it is identity, direction, and experience. From airports to highways, hospitals to heritage sites, visual identity and wayfinding are the silent ambassadors of a nation.</p>
                 <button class="read-more-toggle" data-target="aboutMore">Read more</button>
                 <div class="about-more" id="aboutMore">
                     <p class="about-text">When done right, it communicates safety, professionalism, culture, and global readiness. When done poorly, it exposes gaps in planning, governance, and innovation.</p>
@@ -93,9 +93,9 @@
                     <p class="about-text">This summit addresses the loopholes and gaps holding Africa back:</p>
                     <ul class="about-list">
                         <li>Lack of unified national and city branding strategies</li>
-                        <li>Poor signage standards and maintenance</li>
+                        <li>Poor wayfinding standards and maintenance</li>
                         <li>Limited collaboration between designers, urban planners, policymakers, and investors</li>
-                        <li>Minimal adoption of inclusive, smart, and globally compliant signage systems</li>
+                        <li>Minimal adoption of inclusive, smart, and globally compliant wayfinding systems</li>
                     </ul>
 
                     <p class="about-text">We deliberately chose April to align with two globally significant creative milestones:</p>
@@ -110,7 +110,7 @@
 
                     <p class="about-text">This is more than a summit. It is a movement to redesign perception, restore identity, and reshape Africa's global image—starting with Nigeria.</p>
 
-                    <p class="about-text"><strong>Register now</strong> and be part of the conversation shaping the future of world branding and signage.</p>
+                    <p class="about-text"><strong>Register now</strong> and be part of the conversation shaping the future of global branding.</p>
                 </div>
                 
                 <!-- CTA Buttons -->
@@ -288,6 +288,38 @@
         </div>
     </div>
 
+        <!-- Payment Modal (shows account details and allows proof upload) -->
+        <div class="modal" id="paymentModal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+                <h2>Payment Details</h2>
+
+                <div class="payment-info">
+                    <p>Please pay <strong id="paymentAmount">₦40,000</strong> to:</p>
+                    <p><strong>Account No:</strong> 1931500038</p>
+                    <p><strong>Account Name:</strong> Workerlink Consulting</p>
+                    <p><strong>Bank:</strong> Access Bank</p>
+                </div>
+
+                <form id="paymentForm" class="payment-form" enctype="multipart/form-data">
+                    <input type="hidden" id="paymentDelegateType" name="delegateType">
+                    <input type="hidden" id="registrationRef" name="registrationRef">
+
+                    <div class="form-group">
+                        <label for="proofFile">Upload proof of payment (image or PDF)</label>
+                        <input type="file" id="proofFile" name="proofFile" accept="image/*,application/pdf" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Upload Proof</button>
+                        <button type="button" class="btn btn-secondary" onclick="closePaymentModal()">Cancel</button>
+                    </div>
+
+                    <p class="form-note">Accepted: JPG, PNG, PDF. Max 5MB.</p>
+                </form>
+            </div>
+        </div>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -361,7 +393,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>WBS 2026</h3>
-                    <p>Global Branding and Signage Summit</p>
+                    <p>Global Branding Summit</p>
                     <p class="footer-tagline">Repositioning Africa on the World Stage</p>
                 </div>
                 <div class="footer-section">
@@ -381,7 +413,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Worklink Consulting. All rights reserved.</p>
-                <p>Global Branding and Signage Summit | April 24, 2026 | Nigeria, Africa</p>
+                <p>Global Branding Summit | April 24, 2026 | Nigeria, Africa</p>
             </div>
         </div>
     </footer>

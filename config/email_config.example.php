@@ -6,11 +6,11 @@
  */
 
 // SMTP Configuration
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 587);
-define('SMTP_SECURE', 'tls');
-define('SMTP_USERNAME', 'your-email@gmail.com');
-define('SMTP_PASSWORD', 'your-app-password');
+define('SMTP_HOST', 'mail.wbssummit.com.ng');
+define('SMTP_PORT', 465);
+define('SMTP_SECURE', 'ssl');
+define('SMTP_USERNAME', 'info@wbssummit.com.ng');
+define('SMTP_PASSWORD', 'Wbssummit@2025');
 
 // Email Settings
 define('FROM_EMAIL', 'info@wbssummit.com.ng');
@@ -19,8 +19,8 @@ define('REPLY_TO_EMAIL', 'info@wbssummit.com.ng');
 define('ADMIN_EMAIL', 'info@wbssummit.com.ng');
 
 // Application Settings
-define('SITE_NAME', 'Global Branding and Signage Summit 2026');
-define('SITE_URL', 'http://localhost/wbs');
+define('SITE_NAME', 'Global Branding Summit 2026');
+define('SITE_URL', 'https://wbssummit.com.ng/');
 
 return [
     'smtp' => [
