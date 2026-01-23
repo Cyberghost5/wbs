@@ -272,7 +272,7 @@ function initHeroSlider() {
     }
 
     function startAutoSlide() {
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
     }
 
     function stopAutoSlide() {
@@ -343,9 +343,9 @@ function applySlideFocalPoints() {
         } else {
             img.style.objectPosition = 'center center';
         }
-        img.style.objectFit = 'cover';
-        img.style.width = '100%';
-        img.style.height = '100%';
+        // img.style.objectFit = 'cover';
+        // img.style.width = '100%';
+        // img.style.height = '100%';
     });
 }
 
